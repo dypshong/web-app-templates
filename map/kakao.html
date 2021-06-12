@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Kakao 지도 시작하기</title>
+	</head>
+	<body>
+		<div id="map" style="width:500px;height:400px;"></div>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bc104631b220b069e43de8b9bd97f313"></script>
+		<script>
+			let latitude = 33.450701;
+			let longitude = 126.570667;
+
+
+			function drawMap(position) {
+				let container = document.getElementById('map');
+
+				let options = {
+					center: position,
+				};
+
+				let map = new kakao.maps.Map(container, options);
+
+				let marker = new kakao.maps.Marker({ position : position });
+				marker.setMap(map);
+			}
+
+			if('geolocation' in navigator) {
+				navigator.geolocation.getCurrentPosition((position) => {
+					drawMap(new kakao.maps.LatLng(
+						position.coords.latitude,
+						position.coords.longitude));
+				});
+			} else {
+			}
+
+
+		</script>
+	</body>
+</html>
